@@ -1,12 +1,12 @@
 import File from "../model/file.js";
 
 export const uploadFile=async (req,res)=>{
+    try {
     const fileObj = {
         path: req.file.path,
         name: req.file.originalname,
     }
     
-    try {
         const file = await File.create(fileObj);
         console.log(file)
         res.status(200).json({path:`/files/${file._id }`})
